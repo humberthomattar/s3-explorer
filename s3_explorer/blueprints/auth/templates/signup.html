@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero is-fullheight">
+    <div class="hero-body has-background-white-bis" style="margin-top: 2rem">
+
+<div class="column is-4 is-offset-4">
+
+    <h3 class="title has-text-centered">S3 Explorer</h3>
+    <div class="box">
+        <h3 class="subtitle">Crie agora sua conta gratuita!</h3>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+                {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('auth.signup') }}">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="name" placeholder="Nome" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="password" name="password" placeholder="Senha">
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-large is-fullwidth">Cadastrar</button>
+        </form>
+        <br>
+                            <nav class="level">
+                                <div class="level-item has-text-centered">
+                                  <div>
+                                    <a href="{{ url_for('auth.login') }}">Entrar na sua conta</a>
+                                  </div>
+                                </div>
+                              </nav>
+    </div>
+</div>
+
+</div>
+</section>
+{% endblock %}

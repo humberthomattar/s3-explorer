@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:  
+  app:
+    build: 
+      context: .    
+    container_name: s3_explorer
+    environment:
+      FLASK_APP: s3_explorer
+      FLASK_DEBUG: 1 
+      TEMPLATES_AUTO_RELOAD: 1
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge

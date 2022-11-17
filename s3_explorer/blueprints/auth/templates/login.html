@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<section class="hero is-fullheight">
+    <div class="hero-body has-background-white-bis" style="margin-top: 2rem">
+ 
+
+        <div class="container has-text-centered">
+            <div class="columns is-8 is-variable ">
+
+
+                <div class="column is-two-thirds has-text-left">
+                    <h1 class="title is-1">S3 Explorer</h1>
+                    <p class="is-size-4">Gerencie de maneira simples e intuitiva seu armazenamento de objetos (s3).</p>
+                    
+                </div>
+
+
+                <div class="column is-one-third has-text-left">
+                    
+                    
+                        
+                        <div class="box">
+                            <h4 class="subtitle">Entrar no S3 Explorer</h4>
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="notification is-danger">
+                                    {{ messages[0] }}
+                                    </div>
+                            {% endif %}
+                            {% endwith %}
+                            <form method="POST" action="{{ url_for('auth.login') }}">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input is-large" type="email" name="email" placeholder="E-mail" autofocus="">
+                                    </div>
+                                </div>
+                    
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input is-large" type="password" name="password" placeholder="**************">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="remember">
+                                        Lembrar meus dados
+                                    </label>
+                                </div>
+                                <button class="button is-block is-info is-large is-fullwidth">Autenticar</button>
+                            </form>
+                            <br>
+                            <nav class="level">
+                                <div class="level-item has-text-centered">
+                                  <div>
+                                    <a href="{{ url_for('auth.signup') }}">Crie uma conta</a>
+                                  </div>
+                                </div>
+                              </nav>
+
+                        </div>
+                    
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+{% endblock %}

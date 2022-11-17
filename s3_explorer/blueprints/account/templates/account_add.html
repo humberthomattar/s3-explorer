@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+<section class="hero ">
+  <div class="hero-body has-background-white-bis" style="margin-top: 2rem">
+
+
+<div class="columns">
+
+  <div class="column aside hero is-fullheight is-2 ">
+
+      <aside class="menu">
+        <a class="button is-info is-block is-bold">
+          Novo Armazenamento
+        </a>
+        <p class="menu-label">
+          Geral
+        </p>
+        <ul class="menu-list">
+          <li><a>Dashboard</a></li>
+        </ul>
+        <p class="menu-label">
+          Contas
+        </p>
+        <ul class="menu-list">
+          <li><a>Conta 1</a></li>
+          <li><a>Conta 2</a></li>
+          <li><a>Conta 3</a></li>
+          <li><a>Conta 4</a></li>
+      </aside>
+
+    </div>
+
+      <div class="column is-10 has-background-white">
+        
+        <p class="title is-3">Nova conta de armazenamento</p>
+        
+        
+        <div class="box">
+
+        <form method="POST" action="{{ url_for('account.add') }}">
+          {{ form.csrf_token }}
+          
+          <div class="field">
+            <label class="label">{{ form.name.label}}</label>
+            <div class="control">
+              {{ form.name(size=50)}}
+            </div>
+            {% if form.name.errors %}
+            <p class="help is-danger">
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </p>
+            {% endif %}
+          </div>
+
+          <div class="field">
+            <label class="label">{{ form.endpoint.label}}</label>
+            <div class="control">
+              {{ form.endpoint(size=50)}}
+            </div>
+            {% if form.endpoint.errors %}
+            <p class="help is-danger">
+                {% for error in form.endpoint.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </p>
+            {% endif %}
+          </div>
+
+          <div class="field">
+            <label class="label">{{ form.access_key_id.label}}</label>
+            <div class="control">
+              {{ form.access_key_id(size=50)}}
+            </div>
+            {% if form.access_key_id.errors %}
+            <p class="help is-danger">
+                {% for error in form.access_key_id.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </p>
+            {% endif %}
+          </div>
+
+          <div class="field">
+            <label class="label">{{ form.secret_access_key.label}}</label>
+            <div class="control">
+              {{ form.secret_access_key(size=50)}}
+            </div>
+            {% if form.secret_access_key.errors %}
+            <p class="help is-danger">
+                {% for error in form.secret_access_key.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </p>
+            {% endif %}
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link" type="submit">Cadastrar</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light" type="reset">Cancel</button>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+      </div>
+  
+
+</div>
+
+</div>
+</section>
+
+
+
+{% endblock %}

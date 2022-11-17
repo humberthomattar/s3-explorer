@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+<section class="hero ">
+  <div class="hero-body has-background-white-bis" style="margin-top: 2rem">
+
+
+<div class="columns">
+
+  <div class="column aside hero is-fullheight is-2 ">
+
+      <aside class="menu">
+        <a class="button is-info is-block is-bold">
+          Novo Armazenamento
+        </a>
+        <p class="menu-label">
+          Geral
+        </p>
+        <ul class="menu-list">
+          <li><a>Dashboard</a></li>
+        </ul>
+        <p class="menu-label">
+          Contas
+        </p>
+        <ul class="menu-list">
+          <li><a>Conta 1</a></li>
+          <li><a>Conta 2</a></li>
+          <li><a>Conta 3</a></li>
+          <li><a>Conta 4</a></li>
+      </aside>
+
+    </div>
+
+      <div class="column is-10 has-background-white">
+
+      <p class="title is-3 is-spaced">Contas de Armazenamento</p>
+      <hr>
+
+      <div class="buttons level-right">
+        <a class="button is-primary is-small" href="{{ url_for('account.add') }}">Nova Conta</a>
+      </div>
+
+
+
+        <div class="box">
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <article class="message is-success is-small">
+            <div class="message-body">
+              {{ messages[0] }}
+          </article>
+          {% endif %}
+        {% endwith %}
+
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Nome da Conta</th>
+              <th>Enpoint</th>
+              <th>Access Key</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for account in accounts:%}
+            <tr>
+              <td>{{ account.name }}</td>
+              <td>{{ account.endpoint }}</td>
+              <td>{{ account.access_key_id }}</td>
+              <td>
+                <a class="button is-small is-light">Editar</a>
+                <a class="button is-small is-danger is-light" href="{{url_for('account.delete', account_delete=account.id)}}">Excluir</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+        {% if not accounts%}
+        <article class="message is-small">
+          <div class="message-body has-text-centered">
+            <strong>Não encontramos as suas contas de armazenamento!</strong>
+            <br><br>
+            <a class="button is-small is-primary" href="{{ url_for('account.add') }}">Crie agora!</a>
+          </div>
+        </article>
+        {% endif %}
+
+      </div>
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
+
+{% endblock %}
